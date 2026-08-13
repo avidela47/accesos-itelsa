@@ -64,7 +64,7 @@ a {
   position: absolute;
   top: 14px;
   left: 24px;
-  width: clamp(130px, 14vw, 200px);
+  width: clamp(90px, 8vw, 130px);
   height: auto;
   object-fit: contain;
   z-index: 20;
