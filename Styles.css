@@ -136,7 +136,7 @@ a {
   width: 530px;
   height: 530px;
   transform: translateY(-50%);
-  background: url("assets/itelsa-icon.png") center / contain no-repeat;
+  background: url("itelsa-icon.png") center / contain no-repeat;
   opacity: .035;
   filter: grayscale(1);
   z-index: -5;
