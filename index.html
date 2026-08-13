@@ -71,11 +71,11 @@ a {
 /* ---------- HEADER ---------- */
 
 .topbar {
-  height: 84px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(24px, 4vw, 68px);
+  padding: 0 clamp(20px, 3vw, 48px);
   background: rgba(255,255,255,.86);
   border-bottom: 1px solid rgba(20, 61, 104, .09);
   box-shadow: 0 7px 30px rgba(8, 30, 62, .05);
@@ -92,8 +92,8 @@ a {
 }
 
 .brand img {
-  width: clamp(180px, 19vw, 300px);
-  height: 58px;
+  width: clamp(140px, 15vw, 220px);
+  height: 40px;
   object-fit: contain;
   object-position: left center;
 }
@@ -123,12 +123,13 @@ a {
 /* ---------- MAIN ---------- */
 
 .lobby {
-  min-height: calc(100vh - 84px);
+  height: calc(100vh - 58px);
   position: relative;
   display: grid;
   place-items: center;
-  padding: 40px 24px;
+  padding: 8px 20px;
   isolation: isolate;
+  overflow: hidden;
 }
 
 .lobby::before {
@@ -171,14 +172,10 @@ a {
 /* ---------- RADIAL ACCESS MAP ---------- */
 
 .access-map {
-  --map-w: min(980px, 86vw);
-  --map-h: min(690px, calc(100vh - 160px));
-
+  width: min(880px, 90vw, 130vh);
+  height: min(600px, 80vh, 68vw);
   position: relative;
-  width: var(--map-w);
-  height: max(580px, var(--map-h));
   margin: auto;
-  transform-origin: center center;
 }
 
 .orbit {
@@ -219,7 +216,7 @@ a {
   --accent: var(--blue);
 
   position: absolute;
-  width: 154px;
+  width: 172px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -256,8 +253,8 @@ a {
 
 .portal-ring {
   position: relative;
-  width: 116px;
-  height: 116px;
+  width: 136px;
+  height: 136px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -281,8 +278,8 @@ a {
 }
 
 .portal-ring img {
-  width: 91px;
-  max-height: 67px;
+  width: 106px;
+  max-height: 78px;
   object-fit: contain;
   position: relative;
   z-index: 2;
@@ -300,38 +297,38 @@ a {
 
 .portal--smart {
   --accent: #368dff;
-  left: 22%;
-  top: 4%;
+  left: 20%;
+  top: 10%;
 }
 
 .portal--sas {
   --accent: #14a7b2;
-  right: 22%;
-  top: 4%;
+  right: 20%;
+  top: 10%;
 }
 
 .portal--matriz {
   --accent: #ff941d;
-  left: 10%;
-  top: 41%;
+  left: 6%;
+  top: 42%;
 }
 
 .portal--relevamiento {
   --accent: #ff5c5c;
-  right: 10%;
-  top: 41%;
+  right: 6%;
+  top: 42%;
 }
 
 .portal--engineering {
   --accent: #42c57b;
-  left: 18%;
-  bottom: 1%;
+  left: 16%;
+  bottom: 9%;
 }
 
 .portal--despachos {
   --accent: #34489d;
-  right: 18%;
-  bottom: 1%;
+  right: 16%;
+  bottom: 9%;
 }
 
 /* ---------- CENTRAL HUB ---------- */
@@ -340,7 +337,7 @@ a {
   position: absolute;
   left: 50%;
   top: 51%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.82);
   width: 390px;
   text-align: center;
   z-index: 4;
@@ -753,7 +750,7 @@ a {
           <span class="portal-ring">
             <img src="itelsa-icon.png" alt="" />
           </span>
-          <span class="portal-name">Itelsa Sas<br>WEB</span>
+          <span class="portal-name">Itelsa<br>SAS</span>
         </a>
 
         <a class="portal portal--relevamiento" href="https://relevamiento-pied.vercel.app" target="_blank" rel="noopener">
@@ -832,43 +829,5 @@ a {
       </section>
     </main>
   </div>
-
-  <script>
-    function fitMap() {
-      var map = document.getElementById('accessMap');
-      var lobby = document.querySelector('.lobby');
-      var topbar = document.querySelector('.topbar');
-      if (!map || !lobby) return;
-      if (window.innerWidth <= 680) {
-        map.style.transform = 'none';
-        return;
-      }
-      map.style.transform = 'scale(1)';
-
-      var topbarH = topbar ? topbar.offsetHeight : 0;
-      var availH = window.innerHeight - topbarH - 24;
-      var availW = window.innerWidth - 24;
-
-      var mapRect = map.getBoundingClientRect();
-      var minTop = mapRect.top, maxBottom = mapRect.bottom;
-      var minLeft = mapRect.left, maxRight = mapRect.right;
-
-      var portals = map.querySelectorAll('.portal');
-      portals.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < minTop) minTop = r.top;
-        if (r.bottom > maxBottom) maxBottom = r.bottom;
-        if (r.left < minLeft) minLeft = r.left;
-        if (r.right > maxRight) maxRight = r.right;
-      });
-
-      var totalH = maxBottom - minTop;
-      var totalW = maxRight - minLeft;
-      var scale = Math.min(1, availH / totalH, availW / totalW);
-      map.style.transform = 'scale(' + scale + ')';
-    }
-    window.addEventListener('load', fitMap);
-    window.addEventListener('resize', fitMap);
-  </script>
 </body>
 </html>
