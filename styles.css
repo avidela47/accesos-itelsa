@@ -129,7 +129,7 @@ a {
   width: var(--map-w);
   height: max(580px, var(--map-h));
   margin: auto;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .orbit {
