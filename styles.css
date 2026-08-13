@@ -64,7 +64,7 @@ a {
   position: absolute;
   top: 14px;
   left: 24px;
-  width: clamp(110px, 10vw, 160px);
+  width: clamp(150px, 15vw, 220px);
   height: auto;
   object-fit: contain;
   z-index: 20;
@@ -129,7 +129,7 @@ a {
   width: var(--map-w);
   height: max(580px, var(--map-h));
   margin: auto;
-  margin-top: 20px;
+  margin-top: 70px;
 }
 
 .orbit {
