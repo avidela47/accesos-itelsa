@@ -1,6 +1,6 @@
 /* =========================================================
    ITELSA — Lobby central de accesos
-   HTML + CSS puro
+   HTML + CSS separado
    ========================================================= */
 
 :root {
@@ -26,9 +26,11 @@
   box-sizing: border-box;
 }
 
+/* Desktop por defecto: sin scroll, todo entra en la pantalla */
 html,
 body {
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -52,18 +54,18 @@ a {
 }
 
 .page-shell {
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
 }
 
 /* ---------- HEADER ---------- */
 
 .topbar {
-  height: 84px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(24px, 4vw, 68px);
+  padding: 0 clamp(20px, 3vw, 48px);
   background: rgba(255,255,255,.86);
   border-bottom: 1px solid rgba(20, 61, 104, .09);
   box-shadow: 0 7px 30px rgba(8, 30, 62, .05);
@@ -80,43 +82,22 @@ a {
 }
 
 .brand img {
-  width: clamp(180px, 19vw, 300px);
-  height: 58px;
+  width: clamp(140px, 15vw, 220px);
+  height: 40px;
   object-fit: contain;
   object-position: left center;
-}
-
-.access-pill {
-  height: 44px;
-  padding: 0 22px;
-  border: 1px solid rgba(15, 47, 87, .10);
-  background: rgba(255,255,255,.88);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  color: #102a4b;
-  box-shadow:
-    0 8px 28px rgba(9, 40, 77, .05),
-    inset 0 1px 0 #fff;
-}
-
-.access-pill svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--indigo);
 }
 
 /* ---------- MAIN ---------- */
 
 .lobby {
-  min-height: calc(100vh - 84px);
+  height: calc(100vh - 58px);
   position: relative;
   display: grid;
   place-items: center;
-  padding: 40px 24px;
+  padding: 8px 20px;
   isolation: isolate;
+  overflow: hidden;
 }
 
 .lobby::before {
@@ -578,10 +559,27 @@ a {
 }
 
 /* ---------- RESPONSIVE ---------- */
+/* A partir de 900px de ancho (tablet e menores): se habilita scroll normal */
 
 @media (max-width: 900px) {
+  html,
+  body {
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .page-shell {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
   .lobby {
+    height: auto;
+    min-height: calc(100vh - 58px);
     padding-top: 34px;
+    overflow: visible;
   }
 
   .ambient-wordmark {
@@ -610,6 +608,8 @@ a {
   .portal--despachos { right: 7%; bottom: 2%; }
 }
 
+/* Celular: layout apilado en grilla, con scroll */
+
 @media (max-width: 680px) {
   .topbar {
     height: 74px;
@@ -619,11 +619,6 @@ a {
   .brand img {
     width: 165px;
     height: 48px;
-  }
-
-  .access-pill {
-    height: 40px;
-    padding: 0 15px;
   }
 
   .lobby {
