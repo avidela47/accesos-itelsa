@@ -60,38 +60,20 @@ a {
 
 /* ---------- HEADER ---------- */
 
-.topbar {
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(20px, 3vw, 48px);
-  background: rgba(255,255,255,.86);
-  border-bottom: 1px solid rgba(20, 61, 104, .09);
-  box-shadow: 0 7px 30px rgba(8, 30, 62, .05);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  position: relative;
-  z-index: 50;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.brand img {
-  width: clamp(140px, 15vw, 220px);
-  height: 40px;
+.lobby-logo {
+  position: absolute;
+  top: 14px;
+  left: 24px;
+  width: clamp(130px, 14vw, 200px);
+  height: auto;
   object-fit: contain;
-  object-position: left center;
+  z-index: 20;
 }
 
 /* ---------- MAIN ---------- */
 
 .lobby {
-  height: calc(100vh - 58px);
+  height: 100vh;
   position: relative;
   display: grid;
   place-items: center;
@@ -578,9 +560,15 @@ a {
 
   .lobby {
     height: auto;
-    min-height: calc(100vh - 58px);
-    padding-top: 34px;
+    min-height: 100vh;
+    padding-top: 70px;
     overflow: visible;
+  }
+
+  .lobby-logo {
+    width: 160px;
+    top: 14px;
+    left: 18px;
   }
 
   .ambient-wordmark {
@@ -612,20 +600,16 @@ a {
 /* Celular: layout apilado en grilla, con scroll */
 
 @media (max-width: 680px) {
-  .topbar {
-    height: 74px;
-    padding: 0 18px;
-  }
-
-  .brand img {
-    width: 165px;
-    height: 48px;
+  .lobby-logo {
+    width: 150px;
+    top: 12px;
+    left: 16px;
   }
 
   .lobby {
-    min-height: calc(100vh - 74px);
+    min-height: 100vh;
     display: block;
-    padding: 28px 16px 44px;
+    padding: 70px 16px 44px;
   }
 
   .access-map {
