@@ -39,7 +39,8 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 body {
@@ -63,8 +64,8 @@ a {
 }
 
 .page-shell {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ---------- HEADER ---------- */
@@ -843,11 +844,27 @@ a {
         return;
       }
       map.style.transform = 'scale(1)';
+
       var topbarH = topbar ? topbar.offsetHeight : 0;
       var availH = window.innerHeight - topbarH - 24;
       var availW = window.innerWidth - 24;
-      var rect = map.getBoundingClientRect();
-      var scale = Math.min(1, availH / rect.height, availW / rect.width);
+
+      var mapRect = map.getBoundingClientRect();
+      var minTop = mapRect.top, maxBottom = mapRect.bottom;
+      var minLeft = mapRect.left, maxRight = mapRect.right;
+
+      var portals = map.querySelectorAll('.portal');
+      portals.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < minTop) minTop = r.top;
+        if (r.bottom > maxBottom) maxBottom = r.bottom;
+        if (r.left < minLeft) minLeft = r.left;
+        if (r.right > maxRight) maxRight = r.right;
+      });
+
+      var totalH = maxBottom - minTop;
+      var totalW = maxRight - minLeft;
+      var scale = Math.min(1, availH / totalH, availW / totalW);
       map.style.transform = 'scale(' + scale + ')';
     }
     window.addEventListener('load', fitMap);
