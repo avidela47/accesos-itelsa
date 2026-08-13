@@ -1,293 +1,134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ITELSA SAS | Accesos</title>
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-<link rel="apple-touch-icon" href="favicon-180.png">
-<style>
-  :root{
-    --navy:#0A1A2F;
-    --teal:#2A9D8F;
-    --teal-light:#6FCF97;
-    --blue:#3D7EA6;
-    --amber:#E8A33D;
-    --coral:#E07A5F;
-    --bg:#F5F8F7;
-    --card:#FFFFFF;
-    --line:#C9D6D3;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
-    background:var(--bg);
-    height:100vh;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:2vh 16px;
-  }
-  .bg-logo{
-    position:fixed;
-    inset:0;
-    background-image:url('logo.jpg');
-    background-repeat:no-repeat;
-    background-position:center 60%;
-    background-size:120% auto;
-    opacity:0.055;
-    filter:saturate(1.2);
-    z-index:0;
-    pointer-events:none;
-  }
-  .header{
-    position:relative;
-    z-index:2;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-bottom:2.5vh;
-    text-align:center;
-    flex-shrink:0;
-  }
-  .header .logo-card{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .header img{
-    width:min(260px, 50vw, 17vh);
-    height:auto;
-    display:block;
-  }
-  .header p{
-    margin:1.2vh 0 0;
-    color:var(--navy);
-    opacity:0.55;
-    font-size:clamp(10px,1.6vh,14px);
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-  }
-  .orbit-wrap{
-    position:relative;
-    z-index:2;
-    width:min(560px, 88vw, 68vh);
-    aspect-ratio:1/1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-  .orbit-ring{
-    position:absolute;
-    inset:8%;
-    border:2px dashed var(--line);
-    border-radius:50%;
-  }
-  .phone{
-    position:relative;
-    z-index:3;
-    width:34%;
-    aspect-ratio:9/18.5;
-    background:linear-gradient(160deg,#fff, #eef2f1);
-    border-radius:20% / 9%;
-    box-shadow:0 18px 40px rgba(10,26,47,0.18), inset 0 0 0 2px #dfe6e4;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:9% 6%;
-  }
-  .phone .notch{
-    width:32%;
-    height:5%;
-    background:#c9d1cf;
-    border-radius:10px;
-    margin-bottom:12%;
-  }
-  .phone .screen{
-    flex:1;
-    width:100%;
-    background:linear-gradient(150deg,#dff3ef,#cdeaf0);
-    border-radius:10%;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:repeat(3,1fr);
-    gap:10%;
-    padding:10%;
-  }
-  .phone .screen span{
-    background:rgba(10,26,47,0.16);
-    border-radius:22%;
-  }
-  .phone .home{
-    width:14%;
-    aspect-ratio:1;
-    border-radius:50%;
-    background:#c9d1cf;
-    margin-top:10%;
-  }
-  .node{
-    position:absolute;
-    width:19%;
-    aspect-ratio:1;
-    z-index:4;
-  }
-  .node a{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    background:var(--card);
-    text-decoration:none;
-    box-shadow:0 10px 24px rgba(10,26,47,0.12);
-    border:3px solid var(--c, var(--teal));
-    transition:transform .22s ease, box-shadow .22s ease;
-    overflow:hidden;
-  }
-  .node a:hover, .node a:focus-visible{
-    transform:translateY(-4px) scale(1.06);
-    box-shadow:0 16px 30px rgba(10,26,47,0.2);
-    outline:none;
-  }
-  .node a img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    padding:16%;
-    display:block;
-  }
-  .node-label{
-    position:absolute;
-    top:104%;
-    left:50%;
-    transform:translateX(-50%);
-    width:150%;
-    text-align:center;
-    font-size:11.5px;
-    font-weight:600;
-    color:var(--navy);
-    line-height:1.25;
-    pointer-events:none;
-  }
-  .n1{ top:2%;  left:2%;  --c:var(--blue); }
-  .n2{ top:2%;  right:2%; --c:var(--teal); }
-  .n3{ top:40%; left:-9%; --c:var(--amber); }
-  .n4{ top:40%; right:-9%;--c:var(--coral); }
-  .n5{ bottom:2%; left:2%; --c:var(--teal-light); }
-  .n6{ bottom:2%; right:2%; --c:var(--navy); }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061a33" />
 
-  @media (max-width:640px){
-    .orbit-wrap{ width:min(520px, 96vw); }
-    .node-label{ font-size:10px; }
-  }
-  @media (max-width:460px){
-    .orbit-ring{ display:none; }
-    .orbit-wrap{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:26px 14px;
-      width:92vw;
-      aspect-ratio:auto;
-      padding:10px 0 30px;
-    }
-    .phone{ display:none; }
-    .node{ position:static; width:auto; }
-    .node a{ width:78px; height:78px; margin:0 auto; }
-    .node-label{ position:static; transform:none; width:auto; margin-top:8px; }
-  }
-  .footer{
-    position:relative;
-    z-index:2;
-    margin-top:1.5vh;
-    font-size:clamp(9px,1.3vh,12px);
-    color:var(--navy);
-    opacity:0.45;
-    text-align:center;
-    flex-shrink:0;
-  }
-  @media (max-height:700px){
-    .header img{ width:min(160px, 38vw, 12vh); }
-    .header p{ display:none; }
-    .footer{ display:none; }
-  }
-  @media (max-width:460px){
-    body{ height:auto; min-height:100vh; overflow-y:auto; justify-content:flex-start; }
-  }
-</style>
+  <title>ITELSA SAS | Accesos</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <div class="bg-logo"></div>
+  <div class="page-shell">
 
-  <div class="header">
-    <div class="logo-card">
-      <img src="logo.jpg" alt="ITELSA SAS">
-    </div>
-    <p>Accesos rapidos</p>
-  </div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ITELSA">
+        <img src="assets/itelsa-logo.png" alt="ITELSA" />
+      </a>
 
-  <div class="orbit-wrap">
-    <div class="orbit-ring"></div>
-
-    <div class="phone">
-      <div class="notch"></div>
-      <div class="screen">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
+      <div class="access-pill">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 4.8 5v5.3c0 5 3 9.7 7.2 11.7 4.2-2 7.2-6.7 7.2-11.7V5L12 2Zm0 4.1 4.2 1.7v2.5c0 3.2-1.7 6.5-4.2 8.2-2.5-1.7-4.2-5-4.2-8.2V7.8L12 6.1Z"/>
+        </svg>
+        <span>Accesos</span>
       </div>
-      <div class="home"></div>
-    </div>
+    </header>
 
-    <div class="node n1">
-      <a href="https://gestion-luminarias.vercel.app" target="_blank" rel="noopener" aria-label="Smart Lighting">
-        <img src="icon-lighting.jpg" alt="Smart Lighting">
-      </a>
-      <div class="node-label">Smart<br>Lighting</div>
-    </div>
+    <main class="lobby">
+      <div class="ambient-logo ambient-logo--left"></div>
+      <div class="ambient-wordmark">ITELSA</div>
 
-    <div class="node n2">
-      <a href="https://itelsasas.com" target="_blank" rel="noopener" aria-label="Distribuidor Mean Well">
-        <img src="icon-meanwell.jpg" alt="Distribuidor Mean Well">
-      </a>
-      <div class="node-label">Itelsa Sas Web</div>
-    </div>
+      <section class="access-map" aria-label="Lobby central de accesos">
 
-    <div class="node n3">
-      <a href="https://medicion-de-matriz-88puntos.vercel.app" target="_blank" rel="noopener" aria-label="Matriz 88 puntos">
-        <img src="icon-matriz.jpg" alt="Matriz 88 puntos">
-      </a>
-      <div class="node-label">Matriz<br>88 Puntos</div>
-    </div>
+        <div class="orbit" aria-hidden="true"></div>
 
-    <div class="node n4">
-      <a href="https://relevamiento-pied.vercel.app" target="_blank" rel="noopener" aria-label="Relevamiento">
-        <img src="icon-relevamiento.jpg" alt="Relevamiento">
-      </a>
-      <div class="node-label">Relevamiento</div>
-    </div>
+        <!--
+          REEMPLAZÁ cada href="#" por la URL real de ese sistema.
+          Ejemplo:
+          href="https://mi-sitio.com"
+        -->
 
-    <div class="node n5">
-      <a href="https://itelsa-engineering.vercel.app" target="_blank" rel="noopener" aria-label="Engineering">
-        <img src="icon-engineering.jpg" alt="Engineering">
-      </a>
-      <div class="node-label">Engineering</div>
-    </div>
+        <a class="portal portal--smart" href="https://gestion-luminarias.vercel.app" target="_blank" rel="noopener">
+          <span class="portal-ring">
+            <img src="assets/itelsa-icon.png" alt="" />
+          </span>
+          <span class="portal-name">Smart<br>Lighting</span>
+        </a>
 
-    <div class="node n6">
-      <a href="https://avidela47.github.io/etiquetas/" target="_blank" rel="noopener" aria-label="Despachos">
-        <img src="icon-despachos.jpg" alt="Despachos">
-      </a>
-      <div class="node-label">Despachos</div>
-    </div>
+        <a class="portal portal--sas" href="https://itelsasas.com" target="_blank" rel="noopener">
+          <span class="portal-ring">
+            <img src="assets/itelsa-icon.png" alt="" />
+          </span>
+          <span class="portal-name">Itelsa<br>SAS</span>
+        </a>
 
+        <a class="portal portal--relevamiento" href="https://relevamiento-pied.vercel.app" target="_blank" rel="noopener">
+          <span class="portal-ring">
+            <img src="assets/itelsa-icon.png" alt="" />
+          </span>
+          <span class="portal-name">Relevamiento</span>
+        </a>
+
+        <a class="portal portal--despachos" href="https://avidela47.github.io/etiquetas/" target="_blank" rel="noopener">
+          <span class="portal-ring">
+            <img src="assets/itelsa-icon.png" alt="" />
+          </span>
+          <span class="portal-name">Despachos</span>
+        </a>
+
+        <a class="portal portal--engineering" href="https://itelsa-engineering.vercel.app" target="_blank" rel="noopener">
+          <span class="portal-ring">
+            <img src="assets/itelsa-icon.png" alt="" />
+          </span>
+          <span class="portal-name">Engineering</span>
+        </a>
+
+        <a class="portal portal--matriz" href="https://medicion-de-matriz-88puntos.vercel.app" target="_blank" rel="noopener">
+          <span class="portal-ring">
+            <img src="assets/itelsa-icon.png" alt="" />
+          </span>
+          <span class="portal-name">Matriz<br>88 Puntos</span>
+        </a>
+
+        <div class="hub">
+          <div class="hub-kicker">ACCESOS</div>
+          <div class="hub-subtitle">CENTRO DE CONEXIÓN</div>
+
+          <div class="hub-stage">
+            <div class="hub-halo hub-halo--1"></div>
+            <div class="hub-halo hub-halo--2"></div>
+
+            <div class="hub-core">
+              <img src="assets/itelsa-icon.png" alt="ITELSA" />
+              <span>ITELSA</span>
+            </div>
+
+            <div class="hub-panel hub-panel--tl">
+              <span class="panel-icon">◈</span>
+              <i></i><i></i>
+            </div>
+            <div class="hub-panel hub-panel--tr">
+              <span class="panel-icon">●</span>
+              <i></i><i></i>
+            </div>
+            <div class="hub-panel hub-panel--ml">
+              <span class="panel-icon">⌁</span>
+              <i></i><i></i>
+            </div>
+            <div class="hub-panel hub-panel--mr">
+              <span class="panel-icon">◎</span>
+              <i></i><i></i>
+            </div>
+            <div class="hub-panel hub-panel--bl">
+              <span class="panel-icon">⌘</span>
+              <i></i><i></i>
+            </div>
+            <div class="hub-panel hub-panel--br">
+              <span class="panel-icon">◇</span>
+              <i></i><i></i>
+            </div>
+
+            <div class="hub-base">
+              <span></span>
+            </div>
+          </div>
+
+          <p class="hub-copy">Un punto. Todas las conexiones.</p>
+        </div>
+      </section>
+    </main>
   </div>
-
-  <div class="footer">ITELSA SAS &mdash; Soluciones integrales para iluminacion y control de procesos</div>
 </body>
 </html>
