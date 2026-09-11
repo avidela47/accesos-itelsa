@@ -267,6 +267,20 @@ a {
   top: 20%;
 }
 
+.portal--xubio {
+  --accent: #e0389b;
+  right: -12%;
+  top: 34%;
+}
+
+.portal-connector--xubio {
+  width: 150px;
+  right: 10%;
+  top: 31%;
+  transform: rotate(-28deg);
+  transform-origin: left center;
+}
+
 .portal-connector {
   position: absolute;
   height: 2px;
@@ -619,6 +633,8 @@ a {
   .portal--sas { right: 8%; top: 4%; }
   .portal--payflow { right: -14%; top: 20%; }
   .portal-connector--payflow { display: none; }
+  .portal--xubio { right: -14%; top: 34%; }
+  .portal-connector--xubio { display: none; }
   .portal--matriz { left: 1%; top: 41%; }
   .portal--relevamiento { right: 1%; top: 41%; }
   .portal--engineering { left: 7%; bottom: 2%; }
@@ -691,10 +707,11 @@ a {
   .portal--smart { grid-column: 1; grid-row: 2; }
   .portal--sas { grid-column: 2; grid-row: 2; }
   .portal--payflow { grid-column: 1 / -1; grid-row: 3; justify-self: center; }
-  .portal--matriz { grid-column: 1; grid-row: 4; }
-  .portal--relevamiento { grid-column: 2; grid-row: 4; }
-  .portal--engineering { grid-column: 1; grid-row: 5; }
-  .portal--despachos { grid-column: 2; grid-row: 5; }
+  .portal--xubio { grid-column: 1 / -1; grid-row: 4; justify-self: center; }
+  .portal--matriz { grid-column: 1; grid-row: 5; }
+  .portal--relevamiento { grid-column: 2; grid-row: 5; }
+  .portal--engineering { grid-column: 1; grid-row: 6; }
+  .portal--despachos { grid-column: 2; grid-row: 6; }
 }
 
 @media (prefers-reduced-motion: reduce) {
