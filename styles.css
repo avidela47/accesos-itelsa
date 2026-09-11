@@ -141,6 +141,12 @@ a {
   transform: translate(-50%, -48%);
   border: 1.5px dashed rgba(53, 100, 154, .28);
   border-radius: 50%;
+  animation: orbitSpin 50s linear infinite;
+}
+
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -48%) rotate(0deg); }
+  to   { transform: translate(-50%, -48%) rotate(360deg); }
 }
 
 .orbit::before,
@@ -289,8 +295,15 @@ a {
     rgba(27, 86, 138, .45) 0 6px,
     transparent 6px 12px
   );
+  background-size: 12px 100%;
   z-index: 1;
   pointer-events: none;
+  animation: connectorFlow 0.8s linear infinite;
+}
+
+@keyframes connectorFlow {
+  from { background-position: 0 0; }
+  to   { background-position: 12px 0; }
 }
 
 .portal-connector--payflow {
