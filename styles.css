@@ -401,6 +401,40 @@ a {
     0 0 45px rgba(25, 184, 214, .28),
     inset 0 0 28px rgba(255,255,255,.98);
   animation: hubFloat 4.2s ease-in-out infinite;
+  z-index: 3;
+}
+
+.hub-ping {
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  width: 154px;
+  height: 154px;
+  transform: translate(-50%, 0) scale(1);
+  border-radius: 50%;
+  border: 1.5px solid rgba(30, 180, 214, .55);
+  z-index: 2;
+  pointer-events: none;
+  animation: hubPing 3.6s ease-out infinite;
+}
+
+.hub-ping--2 {
+  animation-delay: 1.2s;
+}
+
+.hub-ping--3 {
+  animation-delay: 2.4s;
+}
+
+@keyframes hubPing {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: .55;
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1.9);
+    opacity: 0;
+  }
 }
 
 .hub-core::before {
