@@ -269,16 +269,16 @@ a {
 
 .portal--xubio {
   --accent: #e0389b;
-  right: -12%;
-  top: 34%;
+  left: -12%;
+  top: 20%;
 }
 
 .portal-connector--xubio {
   width: 150px;
-  right: 10%;
-  top: 31%;
+  left: 10%;
+  top: 17%;
   transform: rotate(-28deg);
-  transform-origin: left center;
+  transform-origin: right center;
 }
 
 .portal-connector {
@@ -633,7 +633,7 @@ a {
   .portal--sas { right: 8%; top: 4%; }
   .portal--payflow { right: -14%; top: 20%; }
   .portal-connector--payflow { display: none; }
-  .portal--xubio { right: -14%; top: 34%; }
+  .portal--xubio { left: -14%; top: 20%; }
   .portal-connector--xubio { display: none; }
   .portal--matriz { left: 1%; top: 41%; }
   .portal--relevamiento { right: 1%; top: 41%; }
