@@ -338,13 +338,20 @@ a {
   bottom: 1%;
 }
 
+.portal--proyectos {
+  --accent: #e9a800;
+  left: 50%;
+  margin-left: -77px;
+  bottom: 1%;
+}
+
 /* ---------- CENTRAL HUB ---------- */
 
 .hub {
   position: absolute;
   left: 50%;
-  top: 51%;
-  transform: translate(-50%, -50%);
+  top: 45%;
+  transform: translate(-50%, -50%) scale(.88);
   width: 390px;
   text-align: center;
   z-index: 4;
@@ -676,6 +683,11 @@ a {
     height: 470px;
   }
 
+  .hub {
+    top: 51%;
+    transform: translate(-50%, -50%);
+  }
+
   .portal--smart { left: 8%; top: 4%; }
   .portal--sas { right: 8%; top: 4%; }
   .portal--payflow { right: -14%; top: 20%; }
@@ -686,6 +698,7 @@ a {
   .portal--relevamiento { right: 1%; top: 41%; }
   .portal--engineering { left: 7%; bottom: 2%; }
   .portal--despachos { right: 7%; bottom: 2%; }
+  .portal--proyectos { left: 50%; margin-left: -77px; bottom: 2%; }
 }
 
 /* Celular: layout apilado en grilla, con scroll */
@@ -740,6 +753,7 @@ a {
     top: auto !important;
     bottom: auto !important;
     width: auto;
+    margin-left: 0;
   }
 
   .portal-ring {
@@ -759,6 +773,7 @@ a {
   .portal--relevamiento { grid-column: 2; grid-row: 5; }
   .portal--engineering { grid-column: 1; grid-row: 6; }
   .portal--despachos { grid-column: 2; grid-row: 6; }
+  .portal--proyectos { grid-column: 1 / -1; grid-row: 7; justify-self: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
